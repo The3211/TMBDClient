@@ -15,8 +15,8 @@ class PeopleRepositoryImpl(
         return getPeopleFromCache()
     }
 
-    override suspend fun updatePeopleList(): List<People>? {
-        var newPeopleList = getPeopleListFromApi()
+    override suspend fun updatePeopleList(): List<People> {
+        val newPeopleList = getPeopleListFromApi()
         peopleLocalDataSource.clearAll()
         peopleLocalDataSource.savePeopletoDB(newPeopleList)
         peopleCacheDataSource.savePeopleToCache(newPeopleList)
@@ -64,7 +64,7 @@ class PeopleRepositoryImpl(
         if(peopleList.isNotEmpty()){
             return peopleList
         }else{
-            peopleList = peopleLocalDataSource.getPeopleList()
+            peopleList = getPeopleListFromDB()
             peopleCacheDataSource.savePeopleToCache(peopleList)
         }
         return peopleList

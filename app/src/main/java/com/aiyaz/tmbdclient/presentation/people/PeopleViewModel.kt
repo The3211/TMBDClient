@@ -11,14 +11,14 @@ class PeopleViewModel(
 ): ViewModel() {
 
 
-    fun getTvShowList() = liveData {
-        val tvShowList = getPeopleUseCase.execute()
-        emit(tvShowList)
+    fun getPeopleList() = liveData {
+        val peopleList = getPeopleUseCase.execute()
+        emit(peopleList)
     }
 
-    fun updateTvShowList() = liveData {
-        val tvShowList = updatePeopleUseCase.execute()
-        emit(tvShowList)
+    fun updatePeopleList() = liveData {
+        val peopleList = updatePeopleUseCase.execute()
+        emit(peopleList)
     }
 
 }
